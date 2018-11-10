@@ -2,8 +2,20 @@
   <h1>Meteor BrainStorm</h1>
 </header>
 
+<h1>Ajouter une idée</h1>
+<form class="new-idea" ng-submit="$ctrl.addIdea($ctrl.newIdea)">
+  <input ng-model="$ctrl.newIdea" type="text"
+         name="text" placeholder="Ajouter une idée"/>
+</form>
+
 <ul>
   <li ng-repeat="idea in $ctrl.ideas">
-    {{idea.text}}
+    <button class="delete" ng-click="$ctrl.removeIdea(idea)">&times;</button>
+    <input type="checkbox" ng-checked="idea.checked"
+      ng-click="$ctrl.setChecked(idea)" class="toggle-checked"/>
+    <span class="text">
+        {{idea.text}}
+    </span>
+
   </li>
 </ul>
