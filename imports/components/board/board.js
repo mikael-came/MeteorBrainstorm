@@ -23,12 +23,27 @@ class BoardCtrl {
     // Insert a task into the collection
     IdeasCollection.insert({
       text: newIdea,
+      score: 0,
       createdAt: new Date
     });
     // Clear form
     this.newIdea = '';
   }
 
+  incrementIdea(idea){
+    let newscore = 0;
+    if(idea.score)
+      newscore =  idea.score + 1;
+    else {
+      newscore = 1;
+      }
+
+    IdeasCollection.update(idea._id, {
+      $set: {
+        score:newscore
+      },
+    });
+  }
   setChecked(idea) {
     // Set the checked property to the opposite of its current value
     IdeasCollection.update(idea._id, {
