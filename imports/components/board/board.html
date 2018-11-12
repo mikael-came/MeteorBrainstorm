@@ -1,25 +1,120 @@
 <header>
   <h1>Meteor BrainStorm</h1>
+  <style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        text-align: center;
+        display: flex;
+        height: 100%;
+        flex-direction:column;
+        align-self: stretch;
+
+    }
+    .card > * {
+      width:100%;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    h4.title{
+      color: grey;
+      font-size: 18px;
+    }
+
+    .card .score{
+      font-size: 18px;
+      text-align: center;
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding-bottom: 8px;
+      padding:2px;
+      width: 100%;
+      marging:10px;
+
+    }
+
+    .increment{
+    }
+
+    button.incrementbtn{
+       border: none;
+       outline: 0;
+       display: inline-block;
+       padding: 8px;
+       color: white;
+       background-color: #000;
+       cursor: pointer;
+       width: 100%;
+       font-size: 18px;
+
+    }
+
+
+    button.delete {
+        float: right;
+        font-weight: bold;
+        background: none;
+        font-size: 1em;
+        border: none;
+        position: relative;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-flow: row wrap;
+       justify-content: center;
+    }
+
+    .flex-container > div.card
+    {
+      width: 400px;
+      min-height :200px;
+      margin: 10px;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+
+    li {
+        position: relative;
+        list-style: none;
+        padding: 15px;
+        border-bottom: #eee solid 1px;
+    }
+
+
+  </style>
 </header>
 
 <h1>Ajouter une idée</h1>
 <form class="new-idea" ng-submit="$ctrl.addIdea($ctrl.newIdea)">
-  <input ng-model="$ctrl.newIdea" type="text"
-         name="text" placeholder="Ajouter une idée"/>
+  <input ng-model="$ctrl.newIdea.title" type="text"
+         name="title" placeholder="Titre"/>
+
 </form>
 
-<ul>
-  <li ng-repeat="idea in $ctrl.ideas">
-    <button class="delete" ng-click="$ctrl.removeIdea(idea)">&times;</button>
-    <input type="checkbox" ng-checked="idea.checked"
-      ng-click="$ctrl.setChecked(idea)" class="toggle-checked"/>
-    <span class="text">
-        {{idea.text}}
-    </span>
-    <span class="text">
-        {{idea.score}}
-    </span>
-    <button class="increment" ng-click="$ctrl.incrementIdea(idea)">+1</button>
+<div class="flex-container">
+  <div class="card" ng-repeat="idea in $ctrl.ideas">
+      <div>
+          <button class="delete" ng-click="$ctrl.removeIdea(idea)">&times;</button>
+      </div>
+        <h4 class="title">{{idea.title}}</h4>
+        <p>{{idea.text}}</p>
 
-  </li>
-</ul>
+        <span class="score">
+          {{idea.score}}
+        </span>
+        <div class="increment">
+          <button class="incrementbtn"
+            ng-click="$ctrl.incrementIdea(idea)">+1</button>
+        </div>
+  </div>
+</div>

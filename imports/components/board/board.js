@@ -22,12 +22,13 @@ class BoardCtrl {
   addIdea(newIdea) {
     // Insert a task into the collection
     IdeasCollection.insert({
-      text: newIdea,
+      text: newIdea.texte,
+      title: newIdea.title,
       score: 0,
       createdAt: new Date
     });
     // Clear form
-    this.newIdea = '';
+    this.newIdea = {};
   }
 
   incrementIdea(idea){
