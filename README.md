@@ -14,9 +14,13 @@ This is a Meteor application bundle. It has only one external dependency:
 Node.js v8.11.4. To run the application:
 
   $ (cd programs/server && npm install)
+  
   $ export MONGO_URL='mongodb://user:password@host:port/databasename'
+  
   $ export ROOT_URL='http://example.com'
+  
   $ export MAIL_URL='smtp://user:password@mailhost:port/'
+  
   $ node main.js
   
   meteor npm start
